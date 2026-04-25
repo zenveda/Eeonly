@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eastern Europe Only</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 2rem;
+    }
+
+    .flag-strip {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
+      text-align: center;
+      color: #c0392b;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 3rem;
+      letter-spacing: 0.1em;
+    }
+
+    .card {
+      background: #16213e;
+      border: 1px solid #c0392b;
+      border-radius: 4px;
+      padding: 2.5rem 3rem;
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(192, 57, 43, 0.2);
+      position: relative;
+    }
+
+    .quote-mark {
+      font-size: 4rem;
+      line-height: 0.5;
+      color: #c0392b;
+      opacity: 0.4;
+      position: absolute;
+      top: 1.2rem;
+      left: 1.5rem;
+    }
+
+    .insult {
+      font-size: clamp(1rem, 3vw, 1.35rem);
+      line-height: 1.7;
+      color: #f0f0f0;
+      font-style: italic;
+      padding: 0.5rem 1rem;
+    }
+
+    .attribution {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #c0392b;
+      letter-spacing: 0.08em;
+    }
+
+    .btn {
+      margin-top: 2.5rem;
+      padding: 0.75rem 2rem;
+      background: transparent;
+      border: 1px solid #c0392b;
+      color: #c0392b;
+      font-family: inherit;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn:hover {
+      background: #c0392b;
+      color: #fff;
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.75rem;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="flag-strip">🇵🇱 🇷🇴 🇷🇺 🇺🇦 🇧🇬 🇨🇿 🇸🇰 🇭🇺</div>
+
+  <h1>Eastern Europe Only</h1>
+  <p class="subtitle">Developer Wisdom from Behind the Iron Curtain</p>
+
+  <div class="card">
+    <span class="quote-mark">"</span>
+    <p class="insult" id="insult"></p>
+    <p class="attribution" id="attribution"></p>
+  </div>
+
+  <button class="btn" onclick="newInsult()">Another One</button>
+
+  <footer>Refresh the page or click the button for more suffering.</footer>
+
+  <script>
+    const insults = [
+      {
+        text: "Your code looks like it was written during a power outage — by someone who has never seen electricity.",
+        from: "— Polish Senior Dev, Warsaw"
+      },
+      {
+        text: "In Romania we have a saying: even the goat knows not to push to main on Friday. You, apparently, do not know this.",
+        from: "— Romanian Backend Engineer, Cluj-Napoca"
+      },
+      {
+        text: "I have seen better architecture in Soviet-era apartment blocks. At least those had a plan.",
+        from: "— Russian Software Architect, Saint Petersburg"
+      },
+      {
+        text: "You call this a variable name? My grandmother names her chickens with more clarity, and she is illiterate.",
+        from: "— Ukrainian Developer, Kyiv"
+      },
+      {
+        text: "This function has more side effects than the vodka I drank last night. At least the vodka was useful.",
+        from: "— Bulgarian Full-Stack Dev, Sofia"
+      },
+      {
+        text: "Your Git history reads like the plot of a Czech absurdist novel — confusing, pointless, and nobody wants to read it.",
+        from: "— Czech Senior Engineer, Prague"
+      },
+      {
+        text: "Even Dijkstra himself would weep if he saw this routing logic. He is already dead — you are finishing the job.",
+        from: "— Hungarian DevOps Engineer, Budapest"
+      },
+      {
+        text: "I have debugged Chernobyl-era FORTRAN that was less radioactive than your callback hell.",
+        from: "— Ukrainian Systems Engineer, Kharkiv"
+      },
+      {
+        text: "This is not spaghetti code. Spaghetti at least has structure. This is soup.",
+        from: "— Polish Backend Dev, Kraków"
+      },
+      {
+        text: "You have nested five for-loops like you are trying to recreate the five-year plan. It did not work then either.",
+        from: "— Romanian Software Engineer, Bucharest"
+      },
+      {
+        text: "Your README says 'simple and clean'. I have read war diaries that were simpler and cleaner than this setup.",
+        from: "— Slovak Developer, Bratislava"
+      },
+      {
+        text: "In Russia, code comments you. And still it would make more sense than what you have written here.",
+        from: "— Russian Dev Humor Enjoyer, Moscow"
+      },
+      {
+        text: "I have seen null pointer exceptions less empty than your test coverage.",
+        from: "— Czech QA Engineer, Brno"
+      },
+      {
+        text: "Your deployment process has more manual steps than assembling IKEA furniture in a Siberian winter with no instructions.",
+        from: "— Russian DevOps, Novosibirsk"
+      },
+      {
+        text: "This regex pattern looks like you let a cat walk across the keyboard. My cat would have done better — she has four paws.",
+        from: "— Bulgarian Developer, Plovdiv"
+      },
+      {
+        text: "The Cold War ended 35 years ago. Your API response times did not get the memo.",
+        from: "— Polish Performance Engineer, Wrocław"
+      },
+      {
+        text: "You have hardcoded the database password into the frontend JavaScript. Even the KGB had better operational security.",
+        from: "— Ukrainian Security Engineer, Lviv"
+      },
+      {
+        text: "Your error messages say 'something went wrong'. Yes. It did. You. You went wrong.",
+        from: "— Hungarian Backend Developer, Debrecen"
+      },
+      {
+        text: "I have maintained legacy COBOL at a state bank since 1994. Your microservices are more legacy than that.",
+        from: "— Romanian Senior Dev, Timișoara"
+      },
+      {
+        text: "You committed 847 files in one push with the message 'fix'. This is not a commit message. This is a confession.",
+        from: "— Slovak DevOps Engineer, Košice"
+      },
+      {
+        text: "Your loading spinner spins longer than the queue at a Soviet bread shop. At least that queue had an end.",
+        from: "— Polish Frontend Dev, Gdańsk"
+      },
+      {
+        text: "I have seen better separation of concerns in a borscht recipe. Everything is mixed together and it still tastes like nothing.",
+        from: "— Ukrainian Architect, Odessa"
+      },
+      {
+        text: "You use twelve JavaScript frameworks to render a button. We built entire operating systems with less.",
+        from: "— Czech Veteran Engineer, Prague"
+      }
+    ];
+
+    let lastIndex = -1;
+
+    function newInsult() {
+      let idx;
+      do {
+        idx = Math.floor(Math.random() * insults.length);
+      } while (idx === lastIndex);
+      lastIndex = idx;
+
+      const el = document.getElementById('insult');
+      const attr = document.getElementById('attribution');
+      el.textContent = insults[idx].text;
+      attr.textContent = insults[idx].from;
+    }
+
+    newInsult();
+  </script>
+</body>
+</html>
